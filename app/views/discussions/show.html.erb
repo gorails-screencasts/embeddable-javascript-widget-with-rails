@@ -1,0 +1,23 @@
+<div class="page-header">
+  <%= link_to discussions_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    All Discussions
+  <% end %>
+  <%= link_to edit_discussion_path(@discussion), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Edit
+  <% end %>
+  <h1>Show discussion</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Url:</dt>
+  <dd><%= @discussion.url %></dd>
+
+  <dt>Title:</dt>
+  <dd><%= @discussion.title %></dd>
+
+  <dt>Comments count:</dt>
+  <dd><%= @discussion.comments_count %></dd>
+
+</dl>

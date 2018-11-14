@@ -1,0 +1,44 @@
+<%= form_with(model: discussion, local: true) do |form| %>
+  <% if discussion.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(discussion.errors.count, "error") %> prohibited this discussion from being saved:</h2>
+
+      <ul>
+      <% discussion.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :url %>
+    <%= form.text_field :url, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :title %>
+    <%= form.text_field :title, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :comments_count %>
+    <%= form.number_field :comments_count, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <% if discussion.persisted? %>
+      <div class="float-right">
+        <%= link_to 'Destroy', discussion, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
+
+    <%= form.submit class: 'btn btn-primary' %>
+
+    <% if discussion.persisted? %>
+      <%= link_to "Cancel", discussion, class: "btn btn-link" %>
+    <% else %>
+      <%= link_to "Cancel", discussions_path, class: "btn btn-link" %>
+    <% end %>
+  </div>
+<% end %>

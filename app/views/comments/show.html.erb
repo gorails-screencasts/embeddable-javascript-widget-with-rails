@@ -1,0 +1,32 @@
+<div class="page-header">
+  <%= link_to comments_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    All Comments
+  <% end %>
+  <%= link_to edit_comment_path(@comment), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Edit
+  <% end %>
+  <h1>Show comment</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Discussion:</dt>
+  <dd><%= @comment.discussion %></dd>
+
+  <dt>Name:</dt>
+  <dd><%= @comment.name %></dd>
+
+  <dt>Email:</dt>
+  <dd><%= @comment.email %></dd>
+
+  <dt>Body:</dt>
+  <dd><%= @comment.body %></dd>
+
+  <dt>Ip address:</dt>
+  <dd><%= @comment.ip_address %></dd>
+
+  <dt>User agent:</dt>
+  <dd><%= @comment.user_agent %></dd>
+
+</dl>

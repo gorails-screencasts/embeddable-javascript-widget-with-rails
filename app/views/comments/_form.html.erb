@@ -1,0 +1,59 @@
+<%= form_with(model: comment, local: true) do |form| %>
+  <% if comment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+      <ul>
+      <% comment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :discussion_id %>
+    <%= form.text_field :discussion_id, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :email %>
+    <%= form.text_field :email, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :body %>
+    <%= form.text_area :body, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :ip_address %>
+    <%= form.text_field :ip_address, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :user_agent %>
+    <%= form.text_field :user_agent, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <% if comment.persisted? %>
+      <div class="float-right">
+        <%= link_to 'Destroy', comment, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
+
+    <%= form.submit class: 'btn btn-primary' %>
+
+    <% if comment.persisted? %>
+      <%= link_to "Cancel", comment, class: "btn btn-link" %>
+    <% else %>
+      <%= link_to "Cancel", comments_path, class: "btn btn-link" %>
+    <% end %>
+  </div>
+<% end %>
