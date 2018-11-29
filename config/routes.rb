@@ -21,7 +21,9 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :discussions
+      resources :discussions, constraints: { id: /.+/ } do
+        resources :comments
+      end
     end
   end
 

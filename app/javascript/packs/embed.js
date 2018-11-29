@@ -5,26 +5,29 @@
 // like app/views/layouts/application.html.erb.
 // All it does is render <div>Hello Vue</div> at the bottom of the page.
 
-let url = window.location.href
+// for handling regeneratorRuntime error
+import "babel-polyfill"
 
-fetch(`http://localhost:3000/api/v1/discussions/${encodeURIComponent(url)}`, {
-  headers: { accept: 'application/json' }
+import Vue from 'vue'
+import App from '../app.vue'
+
+import store from '../store'
+
+const event = (typeof Turbolinks == "object" && Turbolinks.supported) ? "turbolinks:load" : 'DOMContentLoaded'
+
+document.addEventListener(event, () => {
+  const el = document.querySelector("#comments")
+
+  store.dispatch('loadComments')
+
+  const app = new Vue({
+    el,
+    store,
+    render: h => h(App)
+  })
+
+  console.log(app)
 })
-.then(response => response.json())
-.then(data => console.log(data))
-
-//import Vue from 'vue'
-//import App from '../app.vue'
-
-//document.addEventListener('DOMContentLoaded', () => {
-  //const el = document.body.appendChild(document.createElement('hello'))
-  //const app = new Vue({
-    //el,
-    //render: h => h(App)
-  //})
-
-  //console.log(app)
-//})
 
 
 // The above code uses Vue without the compiler, which means you cannot
