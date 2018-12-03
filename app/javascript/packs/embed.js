@@ -10,6 +10,8 @@ import "babel-polyfill"
 
 import Vue from 'vue'
 import App from '../app.vue'
+import Discussion from '../discussion.vue'
+Vue.component('Discussion', Discussion)
 
 import store from '../store'
 

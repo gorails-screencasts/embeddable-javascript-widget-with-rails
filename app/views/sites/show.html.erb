@@ -1,0 +1,23 @@
+<div class="page-header">
+  <%= link_to sites_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    All Sites
+  <% end %>
+  <%= link_to edit_site_path(@site), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Edit
+  <% end %>
+  <h1>Show site</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Domain:</dt>
+  <dd><%= @site.domain %></dd>
+</dl>
+
+
+<pre>
+  &lt;div id="comments"&gt;&lt;/div&gt;
+  &lt;script src="<%= embed_url(format: :js) %>"&gt;&lt;/script&gt;
+  &lt;link rel="stylesheet" type="text/css" href="<%= embed_url(format: :css) %>"&gt;
+</pre>

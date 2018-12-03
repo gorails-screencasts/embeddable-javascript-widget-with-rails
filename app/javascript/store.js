@@ -7,7 +7,10 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    comments: [],
+    discussion: {
+      comments: [],
+    },
+    loading: true,
     name: '',
     email: '',
     body: '',
@@ -21,12 +24,13 @@ const store = new Vuex.Store({
   mutations: {
     updateField,
 
-    load(state, comments) {
-      state.comments = comments
+    load(state, discussion) {
+      state.discussion = discussion
+      state.loading = false
     },
 
     addComment(state, comment) {
-      state.comments.push(comment)
+      state.discussion.comments.push(comment)
     },
 
     setErrors(state, errors) {
@@ -49,7 +53,7 @@ const store = new Vuex.Store({
         headers: { accept: 'application/json' }
       })
       .then(response => response.json())
-      .then(data => commit('load', data.comments))
+      .then(data => commit('load', data))
     },
 
     async createComment({ commit }, formData) {

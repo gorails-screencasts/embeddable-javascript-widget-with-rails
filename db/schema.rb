@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_14_160618) do
+ActiveRecord::Schema.define(version: 2018_12_03_152013) do
 
   create_table "announcements", force: :cascade do |t|
     t.datetime "published_at"
@@ -39,6 +39,8 @@ ActiveRecord::Schema.define(version: 2018_11_14_160618) do
     t.integer "comments_count"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "site_id"
+    t.index ["site_id"], name: "index_discussions_on_site_id"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -76,6 +78,14 @@ ActiveRecord::Schema.define(version: 2018_11_14_160618) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_services_on_user_id"
+  end
+
+  create_table "sites", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "domain"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_sites_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

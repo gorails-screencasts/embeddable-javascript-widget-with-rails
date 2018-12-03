@@ -1,5 +1,6 @@
 class Discussion < ApplicationRecord
-  has_many :comments
+  belongs_to :site
+  has_many :comments, dependent: :destroy
 
   # http://example.com
   # https://example.com
@@ -15,18 +16,7 @@ class Discussion < ApplicationRecord
   # http://example.com/asdf/?foo=1#anchor
   # https://example.com/asdf/?foo=1#anchor
   def self.by_url(url)
-    # Remove query parameters
-    uri = url.split("?").first
-
-    # Remove anchor
-    uri = uri.split("#").first
-
-    # Remove trailing slash
-    uri.sub!(/\/$/, '')
-
-    # Strip the protocol (ie. http://, https://, ftp://, etc)
-    uri.sub!(/\A.*:\/\//, '')
-
-    where(url: uri).first_or_create
+    uri = URI.parse(url)
+    where(url: uri.path).first_or_create
   end
 end

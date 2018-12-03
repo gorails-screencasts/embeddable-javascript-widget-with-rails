@@ -27,9 +27,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :sites
   resources :discussions do
     resources :comments
   end
+
+  get :embed, to: "embeds#show"
 
   root to: 'home#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

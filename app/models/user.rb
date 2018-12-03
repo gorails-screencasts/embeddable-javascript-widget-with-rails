@@ -7,4 +7,6 @@ class User < ApplicationRecord
 
   has_many :notifications, foreign_key: :recipient_id
   has_many :services
+  has_many :sites
+  has_many :discussion, through: :sites
 end
